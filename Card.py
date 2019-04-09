@@ -53,14 +53,15 @@ class Buffer:
     def swap(self,i,j):
         (self.Hand[i], self.Hand[j]) = (self.Hand[j], self.Hand[i])
     def pop(self,thatCard)->Card:
-        idx=self.Hand.index(thatCard)
-        ret=self.Hand[idx]
-        if (idx>=0): 
+        try:
+            idx=self.Hand.index(thatCard)
+            ret=self.Hand[idx]
             self.Hand[idx]=None
             self.sort()
-            return ret
-        return None
-                
+            return ret            
+        except ValueError:
+            return None 
+                        
     def sort(self):
         for i in range(3):
             for j in range(i+1,4):                
@@ -100,6 +101,8 @@ print(B)
 B.pop(C2)
 print(B)
 B.pop(C3)
+print(B)
+B.pop(C1)
 print(B)
 
 
